@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  unstable_HistoryRouter as HistoryRouter,
+  Router,
+} from "react-router-dom";
+import { createBrowserHistory } from "history";
+import HomeBooking from './features/Booking/HomeBooking';
+import RouteComponent from "./HOCs/RouteComponent";
+import Signin from "./features/Auth/Signin";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<RouteComponent Component={HomeBooking} />}></Route>
+        <Route path="/signin" element={<RouteComponent Component={Signin} />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,0 +1,16 @@
+.header{
+    background-color: blue;
+    padding: 20px 0px;
+    color: white;
+}
+.header .content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header .content .right{
+    display: flex;
+}
+.header .content .right p{
+    margin-left: 20px;
+}
