@@ -1,8 +1,7 @@
 import { produce } from "immer";
 const initialState = {
   courseList: {},
-  courseListCategory:[],
-  // courseDetail: null,
+  courseListCategory:[],  
   courseListMySelf:[],
   selectedCourse: null
 };

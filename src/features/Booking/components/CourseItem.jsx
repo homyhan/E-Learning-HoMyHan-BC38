@@ -5,6 +5,7 @@ import { deleteCourse, fetchDetailCourse } from "../thunk";
 import "./CourseItem.css";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { fetchProfile } from "../../Auth/thunk";
 
 const CourseItem = (props) => {
   const dispatch = useDispatch();
@@ -54,8 +55,8 @@ const CourseItem = (props) => {
               confirmButtonText: "Yes, delete it!",
             }).then(async(result) => {
               if (result.isConfirmed) {
-               await dispatch(deleteCourse(infoItem));
-               await dispatch(fetchDetailCourse(courseId));
+               await dispatch(deleteCourse(infoItem)); 
+               await dispatch(fetchProfile);              
                 await dispatch(fetchDetailCourse(props.item.maKhoaHoc));
                 Swal.fire("Deleted!", "Your file has been deleted.", "success");
               }
