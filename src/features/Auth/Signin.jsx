@@ -5,6 +5,7 @@ import "./Signin.css";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { AuthService } from "./services/AuthService";
 import Swal from "sweetalert2";
+import { fetchProfile } from "./thunk";
 
 const Signin = () => {
   const [loginInfo, setLoginInfo] = useState({ taiKhoan: "", matKhau: "" });
@@ -24,11 +25,12 @@ const Signin = () => {
           type: "LOGIN",
           payload: res.data,
         });
+        // await dispatch(fetchProfile);
         localStorage.setItem("TOKEN", res.data.accessToken);
         localStorage.setItem("USER_LOGIN", JSON.stringify(res.data));        
         if(res.data.maLoaiNguoiDung==="GV"){
          return navigate ("/admin");
-        }else{
+        }else{          
          return navigate("/");
         }
                        

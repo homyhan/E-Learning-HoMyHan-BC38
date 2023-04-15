@@ -125,3 +125,7 @@
   .errNotify{
     margin-left: 120px !important;
   }
+
+  .addCourse .luotXemEdit{
+    display: block;
+  }

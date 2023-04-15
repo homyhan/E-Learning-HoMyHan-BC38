@@ -7,7 +7,7 @@ export const fetchCourseList =(page)=> async (dispatch) => {
       dispatch({
           type: "SET_COURSE_LIST",
           payload: res.data,
-        });        
+        });          
     } catch (error) {
       console.log(error);
     }

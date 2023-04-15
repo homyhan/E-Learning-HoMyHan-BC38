@@ -6,6 +6,8 @@ import CourseList from './components/CourseList'
 import { fetchCourseList } from './thunk';
 import Banner from './Banner';
 import Footer from '../../components/Footer';
+import { eLearningServ } from '../../services/eServices';
+import { AuthService } from '../Auth/services/AuthService';
 
 const HomeBooking = () => {
   const dispatch = useDispatch();
@@ -13,6 +15,18 @@ const HomeBooking = () => {
   useEffect(() => {    
     dispatch(fetchCourseList(searchParam.get("page")));
   }, [dispatch, searchParam.get("page")]);
+  const fetchData = ()=>{
+    AuthService.fetchProfile().then(async(res)=>{
+      console.log("ok");
+      await dispatch({
+        type: "LOGIN",
+        payload: res.data
+    }) 
+    }).catch((error)=>{
+      console.log("error");
+    })
+  }
+  useEffect(()=>fetchData(),[])
   return (
     <div>
       <Header></Header>

@@ -818,7 +818,7 @@ const Course = () => {
                   value={dayjs(formikEdit.values.ngayTao, "DD/MM/YYYY")}
                 />
               </label>
-              <label>
+              <label className="luotXemEdit">
                 <span>
                   Lượt xem <span className="required">*</span>
                 </span>
