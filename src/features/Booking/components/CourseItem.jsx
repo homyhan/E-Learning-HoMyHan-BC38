@@ -3,7 +3,7 @@ import { Button, Card, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCourse, fetchDetailCourse } from "../thunk";
 import "./CourseItem.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CourseItem = (props) => {
@@ -12,6 +12,8 @@ const CourseItem = (props) => {
   const { user } = useSelector((state) => state.auth);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const params = useParams();
+  const courseId = params.id;
   const url = window.location.href;
   return (
     <Card
@@ -50,10 +52,11 @@ const CourseItem = (props) => {
               confirmButtonColor: "#3085d6",
               cancelButtonColor: "#d33",
               confirmButtonText: "Yes, delete it!",
-            }).then((result) => {
+            }).then(async(result) => {
               if (result.isConfirmed) {
-                dispatch(deleteCourse(infoItem));
-                dispatch(fetchDetailCourse(props.item.maKhoaHoc));
+               await dispatch(deleteCourse(infoItem));
+               await dispatch(fetchDetailCourse(courseId));
+                await dispatch(fetchDetailCourse(props.item.maKhoaHoc));
                 Swal.fire("Deleted!", "Your file has been deleted.", "success");
               }
             });
