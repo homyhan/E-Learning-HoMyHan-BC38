@@ -1,0 +1,21 @@
+.courseList .dsCourse{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+@media screen and (max-width: 1200px){
+    .courseList .dsCourse{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .courseList .dsCourse{
+        display: block;
+        padding: 0 50px;
+    }
+    
+}

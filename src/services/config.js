@@ -6,6 +6,6 @@ export const https = axios.create({
     baseURL: BASE_URL,
     headers: {
         TokenCybersoft: TOKEN_CYBERSOFT,
-        Authorization: "Bearer "+localStorage.getItem("TOKEN")
+        Authorization: "Bearer "+ localStorage.getItem("TOKEN")
     }
 })

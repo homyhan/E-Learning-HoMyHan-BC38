@@ -1,19 +1,28 @@
 import { AuthService } from "./services/AuthService";
 
-export const login =(data)=>{
-    return async (dispatch)=>{
+export const fetchProfile = async (dispatch)=>{
+    try {
+        const res = await AuthService.fetchProfile();
+        dispatch({
+            type: "LOGIN",
+            payload: res.data
+        })        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const signup = (data) => {
+    return async (dispatch) => {
         try {
-            const res = await AuthService.login(data);
+            const res = await AuthService.signup(data);
+
             dispatch({
-                type: "LOGIN",
-                payload: res.data
-            })
-            localStorage.setItem("TOKEN", res.data.accessToken);
-            localStorage.setItem("USER_LOGIN", JSON.stringify(res.data))
-            console.log(res);
-            
-        } catch (error) {
-            console.log(error);
+                type: "SIGNUP",
+                payload: res.data.content,
+            });
+        }catch (error) {
+            console.log(error);                        
         }
     }
 }

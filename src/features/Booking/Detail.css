@@ -1,0 +1,101 @@
+.intro_info{
+    padding: 40px 20px ;
+    background-color: #ffd60a;
+    color: white;
+}
+.detail_main{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.detail_main .left{
+    grid-column: 1/span 2;
+}
+.member_join{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.member_join img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.member_join i{
+    font-size: 28px;
+}
+.info_item{
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0px;
+    border-bottom: 1px solid rgb(223, 223, 223);
+}
+.info_item i{
+    font-size: 26px;
+    color: #ffd500;
+}
+.detail_main .right{
+    padding: 20px;
+    box-shadow: -1px 1px 15px 5px rgba(0,0,0,0.34);
+}
+.detail_main .right img{
+    width: 100%;
+}
+.detail_main .intro_khoahoc{
+    padding: 40px 0px;
+    border-bottom: 1px solid gray;
+}
+
+.detail_main .content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+.detail_main .content .left{
+    grid-column: 1/span 1;
+}
+.detail_main .content .item{
+    margin-top: 10px;
+}
+
+.detail_main .content .iconCheck{
+    font-size: 24px;
+    margin-right: 10px;
+    color: #ffd500;
+}
+
+.detail_main .will_study h2, .detail_main .content_course h2{
+    font-size: 28px;
+    padding: 20px 0px;
+}
+.detail_main .content_course .item{
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0px;
+}
+.detail_main .btn_register{
+    width: 100%;
+}
+.detail_main .right_price p.price{
+    text-align: right;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 30px 0px;
+}
+.detail_main .right_price p i.fa{
+    color: #ffd500;
+}
+
+@media screen and (max-width: 1000px){
+    .detail_main{
+        display: block;
+    }
+}
+@media screen and (max-width: 576px){
+    .member_join{
+        font-size: 12px;
+    }
+    .will_study {
+        font-size: 12px;
+    }
+}

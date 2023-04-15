@@ -1,7 +1,7 @@
 .header{
-    background-color: blue;
+    background-color: white;
     padding: 20px 0px;
-    color: white;
+    color: black;
 }
 .header .content{
     display: flex;
@@ -13,4 +13,9 @@
 }
 .header .content .right p{
     margin-left: 20px;
+}
+
+img.imgLogo{
+    width: 120px;
+    height: 32px;
 }
