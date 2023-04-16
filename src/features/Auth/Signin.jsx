@@ -24,16 +24,15 @@ const Signin = () => {
         await dispatch({
           type: "LOGIN",
           payload: res.data,
-        });
-        // await dispatch(fetchProfile);
+        });       
+                
         localStorage.setItem("TOKEN", res.data.accessToken);
         localStorage.setItem("USER_LOGIN", JSON.stringify(res.data));        
         if(res.data.maLoaiNguoiDung==="GV"){
          return navigate ("/admin");
         }else{          
          return navigate("/");
-        }
-                       
+        }        
       })
       .catch((error) => {
         Swal.fire({
@@ -41,7 +40,7 @@ const Signin = () => {
           title: "Oops...",
           text: error.response.data,
         });
-      });
+      });      
   };
 
   return (

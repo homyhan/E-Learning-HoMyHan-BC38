@@ -5,6 +5,8 @@ import { UserOutlined } from "@ant-design/icons";
 import { Button, Select } from "antd";
 import "./Header.css";
 import { eLearningServ } from "../services/eServices";
+import { fetchProfile } from "../features/Auth/thunk";
+import { AuthService } from "../features/Auth/services/AuthService";
 
 const Header = () => {
   const userLogin = useSelector((state) => state.auth.user);
@@ -46,10 +48,11 @@ const Header = () => {
               <div style={{ display: "flex", alignItems: "center" }}>
                 {userLogin?.maLoaiNguoiDung === "HV" ? (
                   <p
-                    onClick={() => {
-                      dispatch({
+                    onClick={async() => {                      
+                      await dispatch({
                         type: "COURSE_LIST_MS",
                       });
+                      
                       navigate("/course-list");
                     }}
                     className="mr-2 cursor-pointer"

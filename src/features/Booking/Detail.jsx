@@ -12,6 +12,7 @@ import "./Detail.css";
 import Swal from "sweetalert2";
 import { fetchDetailCourse, register } from "./thunk";
 import { eLearningServ } from "../../services/eServices";
+import { fetchProfile } from "../Auth/thunk";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -27,9 +28,7 @@ const Detail = () => {
   const registerCourse = (thamSo) => {
     eLearningServ
       .registerCourse(thamSo)
-      .then(async (res) => {
-        // await dispatch(fetchCourseList(searchParam.get("page")));
-        // await dispatch()
+      .then(async (res) => {       
         Swal.fire({
           position: "center",
           icon: "success",
@@ -37,6 +36,7 @@ const Detail = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        await dispatch(fetchProfile);
       })
       .catch((error) => {
         Swal.fire({
