@@ -21,6 +21,7 @@ export const bookingReducer = (state = initialState, { type, payload }) => {
       }
       if(type==="COURSE_LIST_MS"){
         draft.courseList={}
+        draft.courseListCategory=[]
       }
     });
   };
