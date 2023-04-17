@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UserOutlined } from "@ant-design/icons";
-import { Button, Select } from "antd";
+import { Button, Modal, Select } from "antd";
 import "./Header.css";
 import { eLearningServ } from "../services/eServices";
 import { fetchProfile } from "../features/Auth/thunk";
@@ -10,11 +10,14 @@ import { AuthService } from "../features/Auth/services/AuthService";
 
 const Header = () => {
   const userLogin = useSelector((state) => state.auth.user);
+  const {user} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [state, setState] = useState({
     danhMuc: [],
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const fetchData = () => {
     eLearningServ
       .getCategory()
@@ -48,11 +51,11 @@ const Header = () => {
               <div style={{ display: "flex", alignItems: "center" }}>
                 {userLogin?.maLoaiNguoiDung === "HV" ? (
                   <p
-                    onClick={async() => {                      
+                    onClick={async () => {
                       await dispatch({
                         type: "COURSE_LIST_MS",
                       });
-                      
+
                       navigate("/course-list");
                     }}
                     className="mr-2 cursor-pointer"
@@ -78,14 +81,33 @@ const Header = () => {
                   Hello {userLogin.hoTen}
                 </p>
                 <UserOutlined
+                  onClick={async() => {
+                     await dispatch(fetchProfile)
+                    setIsModalOpen(true)
+                  }}
                   style={{
                     height: "30px",
                     width: "30px",
                     textAlign: "center",
                     borderRadius: "50%",
                   }}
-                  className="text-xl text-white border-solid border-2 border-white mx-2"
+                  className="text-xl text-black border-solid border-2 border-black mx-2"
                 />
+                <Modal
+                  title="Thông tin cá nhân"
+                  open={isModalOpen}
+                  footer={null}
+                  onCancel={() => setIsModalOpen(false)}
+                >
+                  <p><b>Tài khoản: </b>{userLogin?.taiKhoan}</p>
+                  <p><b>Họ tên: </b>{userLogin?.hoTen}</p>
+                  <p><b>Số điện thoại: </b>{userLogin?.soDT}</p>
+                  <p><b>Email: </b>{userLogin?.email}</p>
+                  <p><b>Khóa học đã đăng kí: </b> {userLogin?.chiTietKhoaHocGhiDanh?.map((item,index)=>{
+                    return <span>{item.tenKhoaHoc}, </span>
+                  })} </p>
+                  
+                </Modal>
                 <Button
                   onClick={async () => {
                     await dispatch({
