@@ -51,7 +51,7 @@ const Header = () => {
               <div style={{ display: "flex", alignItems: "center" }}>
                 {userLogin?.maLoaiNguoiDung === "HV" ? (
                   <p
-                    onClick={async () => {
+                    onClick={async () => {                      
                       await dispatch({
                         type: "COURSE_LIST_MS",
                       });
@@ -104,7 +104,7 @@ const Header = () => {
                   <p><b>Số điện thoại: </b>{userLogin?.soDT}</p>
                   <p><b>Email: </b>{userLogin?.email}</p>
                   <p><b>Khóa học đã đăng kí: </b> {userLogin?.chiTietKhoaHocGhiDanh?.map((item,index)=>{
-                    return <span>{item.tenKhoaHoc}, </span>
+                    return <span key={item.maKhoaHoc}>{item.tenKhoaHoc}, </span>
                   })} </p>
                   
                 </Modal>

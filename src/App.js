@@ -25,12 +25,12 @@ import Course from "./features/Admin/Course";
 
 function App() {
   const dispatch = useDispatch();
-  const {user, isLogin} = useSelector(state=>state.auth);  
+  const {user} = useSelector(state=>state.auth);  
   
   useEffect(() => {
     dispatch(fetchProfile);
-  }, []);
-
+  }, []);  
+  
   return (
     <BrowserRouter>
       <Routes>

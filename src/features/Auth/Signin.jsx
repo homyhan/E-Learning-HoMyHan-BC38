@@ -21,6 +21,7 @@ const Signin = () => {
 
     await AuthService.login(loginInfo)
       .then(async(res) => {
+        await dispatch(fetchProfile)
         await dispatch({
           type: "LOGIN",
           payload: res.data,
